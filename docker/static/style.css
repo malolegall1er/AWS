@@ -1,0 +1,10 @@
+body { font-family: system-ui, Arial, sans-serif; margin: 24px; }
+h1 { margin-bottom: 8px; }
+section { padding: 16px; border: 1px solid #ddd; border-radius: 10px; margin: 16px 0; }
+form { margin: 8px 0; display: flex; gap: 8px; flex-wrap: wrap; }
+input { padding: 8px; }
+button { padding: 8px 12px; cursor: pointer; }
+.flashes { list-style: none; padding: 0; }
+.flashes li { margin: 6px 0; padding: 8px; border-radius: 8px; }
+.flashes li.ok { background: #e8fff0; border: 1px solid #b8e8c8; }
+.flashes li.error { background: #fff0f0; border: 1px solid #f0c0c0; }
