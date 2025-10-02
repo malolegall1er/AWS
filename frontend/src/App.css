@@ -1,0 +1,355 @@
+/* --- Style Global & Variables --- */
+:root {
+  --aws-orange: #ff9900;
+  --aws-dark-blue: #232f3e;
+  --aws-light-blue: #4a5d74;
+  --success-green: #28a745;
+  --error-red: #dc3545;
+  --light-gray: #f0f2f5;
+  --medium-gray: #e6e6e6;
+  --dark-gray: #545b64;
+  --text-color: #333;
+  --card-bg: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--light-gray);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  margin: 0;
+  color: var(--text-color);
+}
+
+.App {
+  min-height: 100vh;
+}
+
+/* --- Header --- */
+.App-header {
+  background-color: var(--aws-dark-blue);
+  padding: 20px;
+  color: white;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* --- Navigation par Onglets --- */
+.tab-nav {
+  background-color: var(--aws-light-blue);
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.tab-nav button {
+  background: none;
+  border: none;
+  color: white;
+  padding: 15px 25px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  border-bottom: 3px solid transparent;
+}
+
+.tab-nav button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.tab-nav button.active {
+  color: var(--aws-orange);
+  border-bottom: 3px solid var(--aws-orange);
+}
+
+/* --- Contenu Principal --- */
+.content {
+  padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.card {
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+}
+
+.card h2 {
+  margin-top: 0;
+  border-bottom: 1px solid var(--medium-gray);
+  padding-bottom: 15px;
+  color: var(--aws-dark-blue);
+}
+
+/* --- Listes & Éléments --- */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  background-color: #fafafa;
+  border: 1px solid var(--medium-gray);
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: box-shadow 0.2s ease;
+}
+
+li:hover {
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+/* --- Formulaires & Boutons --- */
+.form-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+input[type="text"], select, input[type="file"] {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid var(--medium-gray);
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+input[type="file"] {
+  padding: 7px;
+}
+
+button {
+  background-color: var(--aws-orange);
+  color: var(--aws-dark-blue);
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #e68a00;
+}
+
+button:disabled {
+  background-color: var(--medium-gray);
+  color: var(--dark-gray);
+  cursor: not-allowed;
+}
+
+.delete-btn {
+  background-color: var(--error-red);
+  color: white;
+}
+.delete-btn:hover {
+  background-color: #c82333;
+}
+
+/* --- États (Status, Erreur, Vide) --- */
+.status {
+  font-weight: bold;
+  padding: 3px 8px;
+  border-radius: 4px;
+  color: white;
+  font-size: 0.8rem;
+}
+.status-running { background-color: var(--success-green); }
+.status-stopped { background-color: var(--error-red); }
+.status-pending, .status-stopping { background-color: #ffc107; color: #333;}
+
+.error {
+  color: var(--error-red);
+  font-weight: bold;
+}
+
+.empty-state {
+  text-align: center;
+  color: var(--dark-gray);
+  padding: 20px;
+  background-color: #fafafa;
+  border-radius: 6px;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--medium-gray);
+  margin: 25px 0;
+}
+
+/* --- Spinner de Chargement --- */
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 0;
+}
+.spinner {
+  border: 4px solid var(--medium-gray);
+  border-top: 4px solid var(--aws-orange);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* --- Notifications "Toast" --- */
+.notification {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 15px 25px;
+  border-radius: 8px;
+  color: white;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  animation: slideIn 0.3s ease-out;
+}
+.notification.success { background-color: var(--success-green); }
+.notification.error { background-color: var(--error-red); }
+.notification .close-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  margin-left: 15px;
+  padding: 0 5px;
+}
+@keyframes slideIn {
+  from { top: -100px; opacity: 0; }
+  to { top: 20px; opacity: 1; }
+}
+
+/* --- Media Queries pour le Responsive --- */
+@media (max-width: 768px) {
+  .content {
+    padding: 10px;
+  }
+  .card {
+    padding: 15px;
+  }
+  .tab-nav button {
+    padding: 12px 15px;
+    font-size: 0.9rem;
+  }
+  .form-group {
+    flex-direction: column;
+  }
+  .upload-group button {
+    width: 100%;
+  }
+  .tab-nav {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .tab-nav button {
+    width: 100%;
+    border-radius: 0;
+    border-bottom: none;
+    border-left: 5px solid transparent;
+    text-align: left;
+  }
+  .tab-nav button.active {
+    border-left: 5px solid var(--aws-orange);
+    border-bottom: none;
+  }
+  .card {
+    box-shadow: none;
+    border: 1px solid var(--medium-gray);
+    margin-bottom: 15px;
+  }
+  ul {
+    padding: 0;
+  }
+  li {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px;
+    font-size: 0.95rem;
+  }
+  .status {
+    margin-top: 8px;
+    align-self: flex-end;
+  }
+  input[type="text"], select, input[type="file"] {
+    font-size: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  button {
+    font-size: 1rem;
+    width: 100%;
+    margin-top: 8px;
+  }
+  .notification {
+    left: 10px;
+    right: 10px;
+    width: auto;
+    max-width: 95vw;
+    transform: none;
+    font-size: 1rem;
+    padding: 12px 10px;
+  }
+  .notification .close-btn {
+    font-size: 2rem;
+    margin-left: 10px;
+  }
+  .empty-state {
+    padding: 10px;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .App-header {
+    padding: 10px;
+    font-size: 1.1rem;
+  }
+  .tab-nav {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .tab-nav button {
+    font-size: 0.95rem;
+    padding: 10px 8px;
+  }
+  .card {
+    padding: 8px;
+    font-size: 0.95rem;
+  }
+  li {
+    font-size: 0.92rem;
+    padding: 8px;
+  }
+  input[type="text"], select, input[type="file"] {
+    font-size: 0.95rem;
+    padding: 8px;
+  }
+  button {
+    font-size: 0.95rem;
+    padding: 8px 10px;
+  }
+  .notification {
+    font-size: 0.95rem;
+    padding: 8px 5px;
+  }
+}
