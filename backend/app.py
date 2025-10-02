@@ -7,10 +7,10 @@ import boto3
 import botocore
 from werkzeug.utils import secure_filename
 
-REGION = os.getenv("AWS_REGION", "eu-west-3")  # ajuste ta région
+REGION = os.getenv("AWS_REGION", "us-east-1")  # ajuste ta région
 
 app = Flask(__name__)
-app.secret_key = os.getenv("FLASK_SECRET", "change-me")
+app.secret_key = os.getenv("FLASK_SECRET", "B3KaZg+GPBRThYQ2o1hegRYr1EoL0PFNhAEhNKMY")
 
 session = boto3.Session(region_name=REGION)
 s3 = session.client("s3")
